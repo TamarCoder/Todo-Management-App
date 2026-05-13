@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens — single source of truth.
+  Colors are space-separated RGB so Tailwind's <alpha-value> opacity syntax
+  works (e.g. bg-secondary/50). To re-skin the app or add a dark theme, only
+  this file needs to change — every component class keeps working.
+*/
+@layer base {
+  :root {
+    /* Surfaces */
+    --color-background: 248 249 255;            /* #f8f9ff */
+    --color-surface: 255 255 255;               /* #ffffff */
+    --color-surface-dim: 203 219 245;           /* #cbdbf5 */
+    --color-surface-bright: 248 249 255;        /* #f8f9ff */
+    --color-surface-container-lowest: 255 255 255;
+    --color-surface-container-low: 239 244 255; /* #eff4ff */
+    --color-surface-container: 229 238 255;     /* #e5eeff */
+    --color-surface-container-high: 220 233 255;/* #dce9ff */
+    --color-surface-container-highest: 211 228 254;
+
+    /* Text on surface */
+    --color-on-surface: 11 28 48;               /* #0b1c30 */
+    --color-on-surface-variant: 69 70 77;       /* #45464d */
+    --color-on-background: 11 28 48;
+
+    /* Borders */
+    --color-outline: 118 119 125;               /* #76777d */
+    --color-outline-variant: 198 198 205;       /* #c6c6cd */
+    --color-border: 226 232 240;                /* #e2e8f0 */
+
+    /* Primary (dark slate) */
+    --color-primary: 11 28 48;                  /* #0b1c30 */
+    --color-primary-container: 19 27 46;        /* #131b2e */
+    --color-on-primary: 255 255 255;
+    --color-on-primary-container: 124 131 155;  /* #7c839b */
+    --color-primary-fixed: 218 226 253;         /* #dae2fd */
+    --color-on-primary-fixed: 19 27 46;
+
+    /* Secondary (teal brand) */
+    --color-secondary: 13 148 136;              /* #0d9488 */
+    --color-secondary-container: 134 242 228;   /* #86f2e4 */
+    --color-on-secondary: 255 255 255;
+    --color-on-secondary-container: 0 111 102;  /* #006f66 */
+    --color-secondary-fixed: 137 245 231;       /* #89f5e7 */
+    --color-secondary-fixed-dim: 107 216 203;   /* #6bd8cb */
+    --color-on-secondary-fixed: 0 32 29;        /* #00201d */
+
+    /* Tertiary (amber) */
+    --color-tertiary-fixed: 255 221 184;        /* #ffddb8 */
+    --color-on-tertiary-fixed: 42 23 0;
+    --color-on-tertiary-fixed-variant: 101 62 0;
+    --color-on-tertiary-container: 184 117 0;   /* #b87500 */
+
+    /* Status */
+    --color-error: 239 68 68;                   /* #ef4444 */
+    --color-error-container: 255 218 214;       /* #ffdad6 */
+    --color-on-error-container: 147 0 10;
+    --color-success: 16 185 129;                /* #10b981 */
+    --color-warning: 245 158 11;                /* #f59e0b */
+    --color-danger: 239 68 68;
+
+    /* Soft status containers used by badges & alerts */
+    --color-success-container: 220 252 231;     /* #dcfce7 */
+    --color-on-success-container: 6 95 70;      /* #065f46 */
+    --color-warning-container: 254 243 199;     /* #fef3c7 */
+    --color-on-warning-container: 146 64 14;    /* #92400e */
+    --color-danger-container: 254 226 226;      /* #fee2e2 */
+    --color-on-danger-container: 153 27 27;     /* #991b1b */
+    --color-error-subtle: 254 242 242;          /* #fef2f2 */
+    --color-error-subtle-border: 254 202 202;   /* #fecaca */
+
+    /* Form helpers */
+    --color-placeholder: 154 161 173;           /* #9aa1ad */
+
+    /* Button interaction states */
+    --color-primary-hover: 22 36 58;            /* #16243a */
+    --color-primary-disabled: 91 101 119;       /* #5b6577 */
+    --color-secondary-hover: 11 125 114;        /* #0b7d72 */
+    --color-secondary-disabled: 107 182 173;    /* #6bb6ad */
+    --color-danger-hover: 214 58 58;            /* #d63a3a */
+    --color-danger-disabled: 240 160 160;       /* #f0a0a0 */
+
+    /* Inspirational gradient (Stay inspired card) */
+    --color-inspire-from: 11 31 29;             /* #0b1f1d */
+    --color-inspire-via: 15 46 42;              /* #0f2e2a */
+    --color-inspire-to: 26 72 66;               /* #1a4842 */
+
+    /* Radii */
+    --radius-sm: 0.25rem;
+    --radius: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    /* Shadows */
+    --shadow-card: 0px 4px 12px rgba(15, 23, 42, 0.05);
+
+    /* Layout */
+    --container-max: 1100px;
+    --gutter: 24px;
+  }
+
+  html, body {
+    height: 100%;
+  }
+  body {
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-on-background));
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  * { box-sizing: border-box; }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--color-outline-variant));
+    border-radius: 9999px;
+  }
+}
