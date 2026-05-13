@@ -17,11 +17,6 @@ const paddingClass: Record<Padding, string> = {
   lg: "p-6",
 };
 
-/**
- * Surface container for grouped content. Default: white bg, rounded-xl,
- * outline border, no shadow. Use `padding="lg"` for form cards, `md` for
- * sidebars/stats, `none` for cards that contain their own padded children.
- */
 export const Card = forwardRef<HTMLDivElement, Props>(function Card(
   { padding = "md", bordered = true, shadow = false, className, children, ...rest },
   ref

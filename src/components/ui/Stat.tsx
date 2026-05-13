@@ -9,10 +9,6 @@ const toneClass: Record<Tone, string> = {
   neutral: "text-on-surface",
 };
 
-/**
- * Compact stat block: small uppercase label on top, large display number
- * below. Used on Dashboard productivity panel and Profile stats.
- */
 export function Stat({
   label,
   value,

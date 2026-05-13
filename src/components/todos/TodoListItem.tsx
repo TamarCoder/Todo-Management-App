@@ -17,8 +17,6 @@ export function TodoListItem({
   const done = todo.status === "done";
   const isToday = todo.dueDate === localDateISO();
 
-  // Match the reference: time + clock icon for "today" tasks, date + calendar
-  // icon otherwise. Created time becomes a soft fallback if no due date.
   const timeFromCreated = new Date(todo.createdAt).toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",

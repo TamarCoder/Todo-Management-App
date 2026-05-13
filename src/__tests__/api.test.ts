@@ -19,7 +19,6 @@ describe("API integration (mock)", () => {
         password: "secret1234",
         displayName: "X",
       });
-      // Make sure session doesn't carry over from register.
       await authApi.logout();
       await expect(
         authApi.login("x@y.com", "wrong-password")
@@ -107,7 +106,6 @@ describe("API integration (mock)", () => {
         priority: "low",
         dueDate: null,
       });
-      // Different user
       const other = await authApi.register({
         email: "other@test.com",
         password: "secret1234",

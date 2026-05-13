@@ -23,8 +23,6 @@ export default function DashboardPage() {
 
   const today = useMemo(() => localDateISO(), []);
 
-  // Keep done tasks in the list — checking the box should strike them through,
-  // not make them vanish. Today section sorts open tasks first.
   const visible = todos.filter((t) => matchesQuery(t.title, query));
   const todayTodos = visible
     .filter((t) => t.dueDate === today)
@@ -37,8 +35,6 @@ export default function DashboardPage() {
   const totalDone = todos.filter((t) => t.status === "done").length;
   const goalPct = todos.length ? Math.round((totalDone / todos.length) * 100) : 0;
 
-  // Mocked productivity metrics that mirror the design baseline so the panel
-  // looks "real" on first run. Numbers grow with completions.
   const completed = Math.max(12, totalDone);
   const focusHours = 4.2;
   const streak = 5;
@@ -120,11 +116,9 @@ export default function DashboardPage() {
   );
 }
 
-// ---------- Focus Mode Card ----------
-
 function FocusTimerCard() {
   const SESSION = 25 * 60;
-  const [seconds, setSeconds] = useState(24 * 60 + 52); // matches design baseline 24:52
+  const [seconds, setSeconds] = useState(24 * 60 + 52); 
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
@@ -182,8 +176,6 @@ function FocusTimerCard() {
   );
 }
 
-// ---------- Daily Productivity Card ----------
-
 function DailyProductivityCard({
   completed,
   focusHours,
@@ -225,11 +217,6 @@ function DailyProductivityCard({
     </Card>
   );
 }
-
-// ---------- Stay Inspired Card ----------
-// Decorative card matching the "Stay inspired" hero image in the design.
-// Uses a CSS-only composition (gradient + SVG plant + laptop silhouette)
-// so we don't depend on external images.
 
 function StayInspiredCard() {
   return (

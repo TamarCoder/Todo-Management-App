@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom";
 
-// In-memory localStorage mock so tests don't share state across files via real storage.
 class LocalStorageMock {
   private store: Record<string, string> = {};
   clear() {

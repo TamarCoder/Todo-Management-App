@@ -3,14 +3,6 @@ import { cn } from "@/lib/utils";
 
 type Shape = "rounded" | "pill";
 
-/**
- * Generic colored tag/chip. Unlike Badge (which has fixed semantic tones),
- * Pill accepts arbitrary Tailwind bg/text classes — useful for design-system
- * tokens that map to data (priority, status, project tag, etc).
- *
- * Example:
- *   <Pill bg="bg-error-container" text="text-on-error-container">URGENT</Pill>
- */
 export function Pill({
   bg,
   text,

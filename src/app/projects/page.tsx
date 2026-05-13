@@ -158,8 +158,6 @@ export default function ProjectsPage() {
   );
 }
 
-// ---------- Column ---------------------------------------------------------
-
 function Column({
   column,
   todos,
@@ -233,8 +231,6 @@ function Column({
     </div>
   );
 }
-
-// ---------- Card -----------------------------------------------------------
 
 function KanbanCard({
   todo,
@@ -326,8 +322,6 @@ function KanbanCard({
     </div>
   );
 }
-
-// ---------- Helpers --------------------------------------------------------
 
 function priorityTag(
   priority: TodoPriority,

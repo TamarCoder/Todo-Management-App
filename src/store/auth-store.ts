@@ -12,7 +12,6 @@ type AuthState = {
   register: (email: string, password: string, displayName: string) => Promise<void>;
   logout: () => Promise<void>;
   updateProfile: (patch: { displayName: string }) => Promise<void>;
-  /** Test helper: wipe in-memory state. localStorage is reset separately. */
   _reset: () => void;
 };
 
