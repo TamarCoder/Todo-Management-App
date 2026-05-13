@@ -1,5 +1,3 @@
-// Mock data layer backed by localStorage. All operations are async-shaped so the UI
-// can render loading states; small artificial delays mimic a real network.
 
 import { Todo, TodoInput, User } from "./types";
 import { localDateISO } from "./utils";
@@ -8,8 +6,6 @@ const KEY_USERS = "focusflow:users";
 const KEY_TODOS = "focusflow:todos";
 const KEY_SESSION = "focusflow:session";
 const KEY_SEEDED = "focusflow:seeded";
-// Bumped to v2: previous seed used UTC slicing which drifted across timezones,
-// leaving the Today section empty in GMT+ locales. v2 reseeds using local dates.
 const SEED_VERSION = "2";
 
 const ARTIFICIAL_DELAY_MS = 200;
@@ -46,11 +42,9 @@ function writeJSON<T>(key: string, value: T): void {
 }
 
 export function uid(): string {
-  // Random, collision-resistant enough for a mock layer.
   return `id_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
 }
 
-// Tiny hash so we don't store the raw password. Base64 with a salt — NOT real security.
 export function hashPassword(password: string): string {
   const salted = `focusflow::${password}::v1`;
   if (typeof window === "undefined") {
@@ -58,8 +52,6 @@ export function hashPassword(password: string): string {
   }
   return window.btoa(unescape(encodeURIComponent(salted)));
 }
-
-// ---------- Users ----------
 
 export async function listUsers(): Promise<User[]> {
   return delay(readJSON<User[]>(KEY_USERS, []));
@@ -118,8 +110,6 @@ export async function verifyCredentials(email: string, password: string): Promis
   return user;
 }
 
-// ---------- Session ----------
-
 export function getSessionUserId(): string | null {
   const s = safeStorage();
   if (!s) return null;
@@ -133,12 +123,9 @@ export function setSessionUserId(userId: string | null): void {
   else s.removeItem(KEY_SESSION);
 }
 
-// ---------- Todos ----------
-
 export async function listTodos(userId: string): Promise<Todo[]> {
   const all = readJSON<Todo[]>(KEY_TODOS, []);
   const mine = all.filter((t) => t.userId === userId);
-  // Newest first by createdAt — UI may re-sort.
   mine.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
   return delay(mine);
 }
@@ -147,7 +134,7 @@ export async function getTodo(userId: string, id: string): Promise<Todo | null> 
   const all = readJSON<Todo[]>(KEY_TODOS, []);
   const t = all.find((x) => x.id === id);
   if (!t) return delay(null);
-  if (t.userId !== userId) return delay(null); // user isolation
+  if (t.userId !== userId) return delay(null); 
   return delay(t);
 }
 
@@ -200,8 +187,6 @@ export async function deleteTodo(userId: string, id: string): Promise<void> {
   return delay(undefined);
 }
 
-// ---------- Seed ----------
-
 export async function seedIfEmpty(): Promise<void> {
   const s = safeStorage();
   if (!s) return;
@@ -227,13 +212,9 @@ export async function seedIfEmpty(): Promise<void> {
     writeJSON(KEY_USERS, [...existingUsers, demoUser]);
   }
 
-  // Wipe and reseed only the demo user's todos so previously-buggy dates are
-  // replaced. Other users' todos are preserved.
   const existingTodos = readJSON<Todo[]>(KEY_TODOS, []);
   const preserved = existingTodos.filter((t) => t.userId !== demoUser!.id);
 
-  // createdAt is reused as the rendered "time" on today's tasks, so set it to
-  // match the reference design (10:00 AM and 2:30 PM).
   const atToday = (h: number, m: number) => {
     const d = new Date(today);
     d.setHours(h, m, 0, 0);
@@ -277,7 +258,6 @@ export async function seedIfEmpty(): Promise<void> {
   s.setItem(KEY_SEEDED, SEED_VERSION);
 }
 
-// ---------- Test helper ----------
 export function _resetForTests(): void {
   const s = safeStorage();
   if (!s) return;

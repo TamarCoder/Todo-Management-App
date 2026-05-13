@@ -2,8 +2,6 @@ export function cn(...parts: Array<string | false | null | undefined>): string {
   return parts.filter(Boolean).join(" ");
 }
 
-// YYYY-MM-DD in local time. UTC slicing (toISOString) drifts a day across timezones,
-// which broke the dashboard's "today" filter — this helper avoids that.
 export function localDateISO(d: Date = new Date()): string {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");

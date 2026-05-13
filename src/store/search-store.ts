@@ -12,7 +12,6 @@ export const useSearchStore = create<SearchState>((set) => ({
   clear: () => set({ query: "" }),
 }));
 
-/** Case-insensitive title match used across views. */
 export function matchesQuery(title: string, query: string): boolean {
   if (!query.trim()) return true;
   return title.toLowerCase().includes(query.trim().toLowerCase());

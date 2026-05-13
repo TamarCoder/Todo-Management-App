@@ -39,7 +39,6 @@ export const useTodoStore = create<TodoState>((set, get) => ({
   },
 
   update: async (userId, id, patch) => {
-    // Optimistic — flip controlled inputs immediately, reconcile when API returns.
     const now = new Date().toISOString();
     set((state) => ({
       todos: state.todos.map((x) =>
@@ -53,7 +52,6 @@ export const useTodoStore = create<TodoState>((set, get) => ({
       }));
       return t;
     } catch (e) {
-      // Roll back by re-fetching authoritative state.
       await get().refresh(userId);
       throw e;
     }

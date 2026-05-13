@@ -1,10 +1,6 @@
 import { ReactNode } from "react";
 import { LucideIcon } from "lucide-react";
 
-/**
- * Small label + value pair used on detail pages (e.g. Due date / Created /
- * Updated on a task). Optional leading icon next to the label.
- */
 export function MetaField({
   label,
   value,

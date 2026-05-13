@@ -1,13 +1,5 @@
 import type { Config } from "tailwindcss";
 
-/*
-  Design tokens live in src/app/globals.css as CSS custom properties.
-  This config only maps Tailwind utility names to those variables —
-  changing a color means editing globals.css, not this file.
-*/
-
-// Helper: build an RGB-with-alpha CSS expression that respects Tailwind's
-// /<alpha-value> opacity modifier (e.g. bg-secondary/40).
 const c = (name: string) => `rgb(var(--color-${name}) / <alpha-value>)`;
 
 const config: Config = {

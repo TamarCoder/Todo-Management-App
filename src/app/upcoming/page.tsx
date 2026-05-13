@@ -53,7 +53,6 @@ export default function UpcomingPage() {
       const date = new Date(cursor.getFullYear(), cursor.getMonth(), d);
       cells.push({ date, iso: localDateISO(date) });
     }
-    // Pad to a whole number of weeks so the grid stays rectangular.
     while (cells.length % 7 !== 0) cells.push({ date: null, iso: "" });
     return cells;
   }, [cursor]);
@@ -74,7 +73,6 @@ export default function UpcomingPage() {
   );
   const hasHighPriority = dayTasks.some((t) => t.priority === "high");
 
-  // Tomorrow teaser
   const tomorrowISO = useMemo(() => {
     const d = new Date(selectedISO);
     d.setDate(d.getDate() + 1);
@@ -235,8 +233,6 @@ export default function UpcomingPage() {
   );
 }
 
-// ---------- Calendar Grid ----------
-
 function CalendarGrid({
   days,
   byDate,
@@ -321,8 +317,6 @@ function pillClass(priority: TodoPriority): string {
   return "bg-secondary-container text-on-secondary-container";
 }
 
-// ---------- Agenda Card ----------
-
 function AgendaCard({ todo, onToggle }: { todo: Todo; onToggle: (t: Todo) => void }) {
   const isHigh = todo.priority === "high";
   const isDone = todo.status === "done";
@@ -372,8 +366,6 @@ function AgendaCard({ todo, onToggle }: { todo: Todo; onToggle: (t: Todo) => voi
     </div>
   );
 }
-
-// ---------- List View ----------
 
 function ListView({
   todos,

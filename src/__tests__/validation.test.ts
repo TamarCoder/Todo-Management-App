@@ -25,8 +25,8 @@ describe("validation", () => {
   describe("password", () => {
     test("requires 8 chars, letter, number", () => {
       expect(validatePassword("abc1").valid).toBe(false);
-      expect(validatePassword("abcdefgh").valid).toBe(false); // no number
-      expect(validatePassword("12345678").valid).toBe(false); // no letter
+      expect(validatePassword("abcdefgh").valid).toBe(false); 
+      expect(validatePassword("12345678").valid).toBe(false); 
       expect(validatePassword("abcd1234").valid).toBe(true);
     });
   });

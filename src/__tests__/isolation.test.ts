@@ -22,25 +22,20 @@ describe("user isolation", () => {
       dueDate: null,
     });
 
-    // listTodos must filter
     const aList = await listTodos(a.id);
     const bList = await listTodos(b.id);
     expect(aList).toHaveLength(1);
     expect(bList).toHaveLength(0);
 
-    // getTodo from B returns null even with the right id
     const fromB = await getTodo(b.id, todoA.id);
     expect(fromB).toBeNull();
 
-    // updateTodo as B throws
     await expect(
       updateTodo(b.id, todoA.id, { title: "hacked" })
     ).rejects.toThrow(/not authorized/i);
 
-    // deleteTodo as B throws
     await expect(deleteTodo(b.id, todoA.id)).rejects.toThrow(/not authorized/i);
 
-    // A's todo remains intact and unmodified
     const stillA = await getTodo(a.id, todoA.id);
     expect(stillA).not.toBeNull();
     expect(stillA!.title).toBe("Secret of A");

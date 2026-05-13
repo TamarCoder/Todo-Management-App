@@ -9,7 +9,6 @@ const sizeClass: Record<Size, string> = {
   lg: "h-10 w-10 text-xs",
 };
 
-/** Compute up to 2 uppercase initials from any name/email string. */
 export function initialsFrom(value: string | null | undefined): string {
   if (!value) return "?";
   return value
@@ -20,13 +19,6 @@ export function initialsFrom(value: string | null | undefined): string {
     .join("") || "?";
 }
 
-/**
- * Circular avatar showing initials. Provide either `initials` directly or
- * pass `from` (a name/email) and we'll derive them.
- *
- * Defaults to brand teal background; pass `bgClass` / `textClass` for variants
- * (e.g. priority-colored avatars on Kanban cards).
- */
 export function Avatar({
   initials,
   from,
@@ -41,7 +33,6 @@ export function Avatar({
   size?: Size;
   bgClass?: string;
   textClass?: string;
-  /** Adds a 2px background-colored ring (for stacked avatar groups). */
   ring?: boolean;
   className?: string;
 }) {
@@ -62,7 +53,6 @@ export function Avatar({
   );
 }
 
-/** Compact avatar stack (overlapping) — e.g. project member preview. */
 export function AvatarGroup({
   children,
   className,

@@ -46,7 +46,6 @@ export function TodoForm({
     if (!s.valid) e.status = s.error;
     const p = validatePriority(priority);
     if (!p.valid) e.priority = p.error;
-    // Only enforce future-date rule when creating; allow editing past-due tasks.
     if (!initial?.id) {
       const d = validateDueDate(dueDate || null);
       if (!d.valid) e.dueDate = d.error;

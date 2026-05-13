@@ -1,10 +1,5 @@
 import { ReactNode } from "react";
 
-/**
- * Page-section title with optional count badge and trailing slot
- * (filters, progress bar, etc). Used for "Today 4 [progress]" and
- * similar dashboard / list headers.
- */
 export function SectionHeader({
   title,
   count,
