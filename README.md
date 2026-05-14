@@ -4,6 +4,31 @@ A focused, distraction-free task-management workspace built as a frontend assign
 
 The project is **fully frontend** — there is no backend server. A typed mock API layer (`src/api/*`) simulates a REST backend on top of `localStorage`, so the whole app talks to a clean API boundary that can be swapped for a real backend without touching any page, component, or store.
 
+> **GitHub repository:** https://github.com/TamarCoder/Todo-Management-App
+
+---
+
+## Quick start (for reviewers)
+
+Three commands, no configuration needed:
+
+```bash
+git clone https://github.com/TamarCoder/Todo-Management-App.git
+cd Todo-Management-App
+npm install
+npm run dev
+```
+
+Then open **http://localhost:3000**. You can either register a new account or click **"Use demo credentials"** on the login screen (`demo@focusflow.app` / `demo1234`).
+
+Because the project is frontend-only, **no `.env` file, database, or backend setup is required** — the mock API runs entirely in the browser.
+
+To run the test suite:
+
+```bash
+npm test
+```
+
 ---
 
 ## Table of contents
@@ -124,8 +149,8 @@ focusflow-app/
 Requires **Node 18+** and npm.
 
 ```bash
-git clone <this-repo>
-cd focusflow-app
+git clone https://github.com/TamarCoder/Todo-Management-App.git
+cd Todo-Management-App
 npm install
 cp .env.example .env.local           # optional — defaults work as-is
 ```
@@ -165,7 +190,7 @@ npm run start        # serve the production build
 npm run lint         # next/eslint
 ```
 
-The app uses **App Router**. Routes are file-based under `src/app/`. All pages are client-side rendered (`"use client"`) because they read from Zustand stores backed by `localStorage`.
+The app uses **App Router**. Routes are file-based under `src/app/`. The root page (`/`) is a server component that delegates to a small client subtree; the rest of the pages are client-rendered (`"use client"`) because they read from Zustand stores backed by `localStorage`.
 
 ---
 
