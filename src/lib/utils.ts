@@ -9,6 +9,21 @@ export function localDateISO(d: Date = new Date()): string {
   return `${y}-${m}-${day}`;
 }
 
+export function startOfWeekISO(d: Date = new Date()): string {
+  const date = new Date(d);
+  date.setHours(0, 0, 0, 0);
+  const day = date.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  date.setDate(date.getDate() + diff);
+  return localDateISO(date);
+}
+
+export function endOfWeekISO(d: Date = new Date()): string {
+  const start = new Date(startOfWeekISO(d));
+  start.setDate(start.getDate() + 6);
+  return localDateISO(start);
+}
+
 export function formatDate(value: string | null | undefined, opts?: Intl.DateTimeFormatOptions): string {
   if (!value) return "";
   const d = new Date(value);
